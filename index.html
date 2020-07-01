@@ -1,8 +1,8 @@
 <html>
 	<head>
-		<title>Litecoin P2SH Converter</title>
+		<title>Flashcoin P2SH Converter</title>
 		<link rel="stylesheet" href="bootstrap_v3.3.7.min.css">
-		<link rel="shortcut icon" type="image/png" href="litecoin.png">
+		<link rel="shortcut icon" type="image/png" href="flashcoin.png">
 	</head>
 	
 
@@ -15,30 +15,30 @@
 				version = decoded['version']
 
 				switch (version) {
-					case 5:
-						message = "Mainnet p2sh address: ";
+					case 130:
+						message = "Mainnet P2SH address (deprecated): ";
 						version = 50;
 						break;
 					case 50:
-						message = "Mainnet p2sh address (deprecated): ";
-						version = 5;
+						message = "Mainnet P2SH address: ";
+						version = 130;
 						break;
 					case 196:
-						message = "Testnet p2sh address: ";
+						message = "Testnet P2SH address (deprecated): ";
 						version = 58;
 						break;
 					case 58:
-						message = "Testnet p2sh address (deprecated): ";
+						message = "Testnet P2SH address: ";
 						version = 196;
 						break;
 					default:
 						throw "unknown";
 				}
-				// 5 <-> 50
+				// 130 <-> 50
 				// 196 <-> 58
 				address = bitcoin.address.toBase58Check(decoded['hash'], version);
 			} catch(err) {
-				message = "Please enter a valid address."
+				message = "Please enter a valid P2SH address."
 			    address = "";
 			}
 
@@ -50,7 +50,7 @@
 
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Litecoin P2SH Converter</a>
+      <a class="navbar-brand" href="#">Flashcoin P2SH Converter</a>
     </div>
    
 
@@ -59,7 +59,7 @@
 
 		<div class="form-group row">
 			<div class="col-md-4">
-				<label for="address">P2SH Value:</label>
+				<label for="address">P2SH address:</label>
 
 				<input class="form-control" id="address" size="40" value=""/>
 			</div>
@@ -71,6 +71,6 @@
 		
 		<label id="message"/>
 
-		<footer style="margin-top: 7em;">This tool is <a href="https://github.com/litecoin-project/p2sh-convert">Open Source</a>. It can be downloaded and run offline for added security.</footer>
+		<footer style="margin-top: 7em;">This tool is <a href="https://github.com/flash-coin/p2sh-convert">Open Source</a>. It can be downloaded and run offline for added security.</footer>
 	</div>
 </html>
